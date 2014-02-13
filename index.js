@@ -41,6 +41,26 @@ function handleSubScript(element, buffer) {
   translate(secondChild, buffer);
 }
 
+function handleRow(element, buffer) {
+  var firstChild = element.children[0];
+  var lastChild = element.children.slice(-1)[0];
+  var hasParens =
+    firstChild.name == 'mo' &&
+    firstChild.val == '(' &&
+    lastChild.name == 'mo' &&
+    lastChild.val == ')';
+
+  if (!hasParens) {
+    buffer.push('(');
+  }
+
+  handleAll(element.children, buffer);
+
+  if (!hasParens) {
+    buffer.push(')');
+  }
+}
+
 function handleMath(element, buffer) {
   handleAll(element.children, buffer);
 }
@@ -64,7 +84,8 @@ var handlers = {
   mn: handleNumber,
   mfrac: handleFraction,
   msup: handleSuperScript,
-  msub: handleSubScript
+  msub: handleSubScript,
+  mrow: handleRow
 };
 
 function toAsciiMath(mathml) {
