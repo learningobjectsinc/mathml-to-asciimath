@@ -14,6 +14,15 @@ function handleOperator(element, buffer) {
   buffer.push(asciiMath);
 }
 
+function handleFraction(element, buffer) {
+  var firstChild = element.children[0];
+  var secondChild = element.children[1];
+
+  translate(firstChild, buffer);
+  buffer.push('/');
+  translate(secondChild, buffer);
+}
+
 function handleMath(element, buffer) {
   handleAll(element.children, buffer);
 }
@@ -34,7 +43,8 @@ var handlers = {
   math: handleMath,
   mi: handleIdentifier,
   mo: handleOperator,
-  mn: handleNumber
+  mn: handleNumber,
+  mfrac: handleFraction
 }
 
 function toAsciiMath(mathml) {

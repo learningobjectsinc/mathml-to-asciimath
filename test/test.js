@@ -6,8 +6,11 @@ var testCases = [
   ['<math><mn>1</mn><mo>+</mo><mn>2</mn></math>', '1 + 2'],
   ['<math><mn>1</mn><mo>-</mo><mn>2</mn></math>', '1 - 2'],
   ['<math><mn>1</mn><mo>⋅</mo><mn>2</mn></math>', '1 * 2'],
-  [' <math><mn>1</mn><mo>⋆</mo><mn>2</mn></math>', '1 ** 2'],
-  [' <math><mn>1</mn><mo>×</mo><mn>2</mn></math>', '1 xx 2']
+  ['<math><mn>1</mn><mo>⋆</mo><mn>2</mn></math>', '1 ** 2'],
+  ['<math><mn>1</mn><mo>×</mo><mn>2</mn></math>', '1 xx 2'],
+  ['<math><mn>1</mn><mo>/</mo><mn>2</mn></math>', '1 // 2'],
+  ['<math><mfrac><mn>1</mn><mn>2</mn></mfrac></math>', '1 / 2'],
+  ['<math><mn>1</mn><mo>÷</mo><mn>2</mn></math>', '1 -: 2']
 ];
 
 testCases.forEach(function(testCase) {
