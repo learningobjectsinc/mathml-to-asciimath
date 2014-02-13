@@ -13,7 +13,9 @@ var testCases = [
   ['<math><mn>1</mn><mo>÷</mo><mn>2</mn></math>', '1 -: 2'],
   ['<math><mi>a</mi><mo>+</mo><mi>b</mi></math>', 'a + b'],
   ['<math><mn>1</mn><mo>+</mo><mi>b</mi></math>', '1 + b'],
-  ['<math><msup><mi>a</mi><mn>2</mn></msup></math>', 'a ^ 2']
+  ['<math><msup><mi>a</mi><mn>2</mn></msup></math>', 'a ^ 2'],
+  ['<math><msub><mi>x</mi><mn>1</mn></msub></math>', 'x _ 1']
+
 ];
 
 testCases.forEach(function(testCase) {

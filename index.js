@@ -23,12 +23,21 @@ function handleFraction(element, buffer) {
   translate(secondChild, buffer);
 }
 
-function handleSuper(element, buffer) {
+function handleSuperScript(element, buffer) {
   var firstChild = element.children[0];
   var secondChild = element.children[1];
 
   translate(firstChild, buffer);
   buffer.push('^');
+  translate(secondChild, buffer);
+}
+
+function handleSubScript(element, buffer) {
+  var firstChild = element.children[0];
+  var secondChild = element.children[1];
+
+  translate(firstChild, buffer);
+  buffer.push('_');
   translate(secondChild, buffer);
 }
 
@@ -54,8 +63,9 @@ var handlers = {
   mo: handleOperator,
   mn: handleNumber,
   mfrac: handleFraction,
-  msup: handleSuper
-}
+  msup: handleSuperScript,
+  msub: handleSubScript
+};
 
 function toAsciiMath(mathml) {
   var doc = new xmldoc.XmlDocument(mathml);
