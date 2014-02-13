@@ -19,7 +19,8 @@ var testCases = [
   ['<math><mfrac><mrow><mn>1</mn><mo>+</mo><mn>2</mn><mo>+</mo><mn>3</mn><mo>+</mo><mn>4</mn></mrow><mn>10</mn></mfrac></math>', '( 1 + 2 + 3 + 4 ) / 10'],
   ['<math><mrow><mo>(</mo><mi>x</mi><mo>+</mo><mn>1</mn><mo>)</mo></mrow></math>', '( x + 1 )'],
   ['<math><mfrac><mrow><mi>x</mi><mo>+</mo><mn>1</mn></mrow><mn>4</mn></mfrac></math>', '( x + 1 ) / 4'],
-  ['<math><mfrac><mrow><mn>1</mn><mo>+</mo><mn>2</mn><mo>+</mo><mn>3</mn><mo>+</mo><mn>4</mn></mrow><mrow><mn>10</mn><mo>+</mo><mi>a</mi><mo>+</mo><mi>b</mi></mrow></mfrac></math>', '( 1 + 2 + 3 + 4 ) / ( 10 + a + b )']
+  ['<math><mfrac><mrow><mn>1</mn><mo>+</mo><mn>2</mn><mo>+</mo><mn>3</mn><mo>+</mo><mn>4</mn></mrow><mrow><mn>10</mn><mo>+</mo><mi>a</mi><mo>+</mo><mi>b</mi></mrow></mfrac></math>', '( 1 + 2 + 3 + 4 ) / ( 10 + a + b )'],
+  ['<math><mn>4</mn><mfrac><mn>2</mn><mn>3</mn></mfrac></math>', '4 2 / 3']
 ];
 
 testCases.forEach(function(testCase) {
