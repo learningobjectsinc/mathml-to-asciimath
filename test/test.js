@@ -10,6 +10,7 @@ var testCases = [
   ['<math><mn>1</mn><mo>×</mo><mn>2</mn></math>', '1 xx 2'],
   ['<math><mi>a</mi><mi>b</mi></math>', 'a b'],
   ['<math><mn>2</mn><mi>b</mi></math>', '2 b'],
+  ['<math><mn>2</mn><mrow><mo>(</mo><mi>x</mi><mo>+</mo><mn>2</mn><mo>)</mo></mrow></math>', '2 ( x + 2 )'],
   ['<math><mn>1</mn><mo>/</mo><mn>2</mn></math>', '1 // 2'],
   ['<math><mfrac><mn>1</mn><mn>2</mn></mfrac></math>', '1 / 2'],
   ['<math><mn>1</mn><mo>÷</mo><mn>2</mn></math>', '1 -: 2'],
