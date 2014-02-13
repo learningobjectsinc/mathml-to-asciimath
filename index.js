@@ -23,6 +23,15 @@ function handleFraction(element, buffer) {
   translate(secondChild, buffer);
 }
 
+function handleSuper(element, buffer) {
+  var firstChild = element.children[0];
+  var secondChild = element.children[1];
+
+  translate(firstChild, buffer);
+  buffer.push('^');
+  translate(secondChild, buffer);
+}
+
 function handleMath(element, buffer) {
   handleAll(element.children, buffer);
 }
@@ -44,7 +53,8 @@ var handlers = {
   mi: handleIdentifier,
   mo: handleOperator,
   mn: handleNumber,
-  mfrac: handleFraction
+  mfrac: handleFraction,
+  msup: handleSuper
 }
 
 function toAsciiMath(mathml) {
