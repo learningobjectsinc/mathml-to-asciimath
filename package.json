@@ -1,0 +1,18 @@
+{
+  "name": "mathml-to-asciimath",
+  "version": "0.0.1",
+  "description": "Naively convert subset of MathML to AsciiMath",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/nodeunit/bin/nodeunit test"
+  },
+  "keywords": [
+    "mathml",
+    "asciimath"
+  ],
+  "author": "Paul Salaets <psalaets@learningobjects.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "nodeunit": "~0.8.4"
+  }
+}
