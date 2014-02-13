@@ -1,62 +1,48 @@
 var xmldoc = require('xmldoc');
 var moMap = require('./lib/moSymbolMap');
 
-var buffer = [];
-
-function writeIdentifier(element) {
-  write(element.val);
+function writeIdentifier(element, buffer) {
+  buffer.push(element.val);
 }
 
-function writeNumber(element) {
-  write(element.val);
+function writeNumber(element, buffer) {
+  buffer.push(element.val);
 }
 
-function writeOperator(element) {
+function writeOperator(element, buffer) {
   var asciiMath = moMap[element.val];
-  write(asciiMath);
+  buffer.push(asciiMath);
 }
 
-function write(s) {
-  buffer.push(s);
+function processMath(element, buffer) {
+  processAll(element.children, buffer);
 }
 
-function processAll(elements) {
+function processAll(elements, buffer) {
   elements.forEach(function(element) {
-    process(element)
+    process(element, buffer)
   });
 }
 
-function defaultHandler(element) {
-  processAll(element.children);
-}
-
-function process(element) {
+function process(element, buffer) {
   var handler = handlers[element.name];
-  handler(element);
+  handler(element, buffer);
 }
 
 // element name -> handler function
 var handlers = {
-  math: function(element) {
-    processAll(element.children);
-  },
-  mi: function(element) {
-    writeIdentifier(element);
-  },
-  mo: function(element) {
-    writeOperator(element);
-  },
-  mn: function(element) {
-    writeNumber(element);
-  }
+  math: processMath,
+  mi: writeIdentifier,
+  mo: writeOperator,
+  mn: writeNumber
 }
 
 function toAsciiMath(mathml) {
   var doc = new xmldoc.XmlDocument(mathml);
-  process(doc);
-  var result = buffer.join(' ');
-  buffer = [];
-  return result;
+
+  var buffer = [];
+  process(doc, buffer);
+  return buffer.join(' ');
 }
 
 module.exports = toAsciiMath;
