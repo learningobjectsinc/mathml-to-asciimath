@@ -10,8 +10,13 @@ function handleNumber(element, buffer) {
 }
 
 function handleOperator(element, buffer) {
-  var asciiMath = mo.toAsciiMath(element.val);
-  buffer.push(asciiMath);
+  var asciiMathSymbol = mo.toAsciiMath(element.val);
+
+  if (typeof asciiMathSymbol == 'undefined') {
+    throw new Error('Unsupported operator: ' + element.val)
+  }
+
+  buffer.push(asciiMathSymbol);
 }
 
 function handleFraction(element, buffer) {
@@ -88,7 +93,9 @@ function handleAll(elements, buffer) {
 }
 
 function handle(element, buffer) {
-  var handler = handlers[element.name];
+  var handler = handlers[element.name] || function() {
+    throw new Error('Unsupported element: ' + element.name);
+  };
   handler(element, buffer);
 }
 
