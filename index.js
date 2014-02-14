@@ -10,7 +10,7 @@ function handleNumber(element, buffer) {
 }
 
 function handleOperator(element, buffer) {
-  var asciiMath = mo[element.val];
+  var asciiMath = mo.toAsciiMath(element.val);
   buffer.push(asciiMath);
 }
 
@@ -44,19 +44,19 @@ function handleSubScript(element, buffer) {
 function handleRow(element, buffer) {
   var firstChild = element.children[0];
   var lastChild = element.children.slice(-1)[0];
-  var hasParens =
+  var hasGrouping =
     firstChild.name == 'mo' &&
-    firstChild.val == '(' &&
+    mo.isOpenOperator(firstChild.val) &&
     lastChild.name == 'mo' &&
-    lastChild.val == ')';
+    mo.isCloseOperator(lastChild.val);
 
-  if (!hasParens) {
+  if (!hasGrouping) {
     buffer.push('(');
   }
 
   handleAll(element.children, buffer);
 
-  if (!hasParens) {
+  if (!hasGrouping) {
     buffer.push(')');
   }
 }
