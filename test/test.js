@@ -41,7 +41,8 @@ var testCases = [
   ['<math><mrow><mo>[</mo><mn>1</mn><mo>,</mo><mn>3</mn><mo>]</mo></mrow></math>', '[ 1 , 3 ]'],
   ['<math><mrow><mo>[</mo><mn>1</mn><mo>,</mo><mn>3</mn><mo>)</mo></mrow></math>', '[ 1 , 3 )'],
   ['<math><mrow><mo>(</mo><mn>1</mn><mo>,</mo><mn>3</mn><mo>]</mo></mrow></math>', '( 1 , 3 ]'],
-  ['<math><mrow><mo>(</mo><mn>1</mn><mo>,</mo><mn>3</mn><mo>)</mo></mrow></math>', '( 1 , 3 )']
+  ['<math><mrow><mo>(</mo><mn>1</mn><mo>,</mo><mn>3</mn><mo>)</mo></mrow></math>', '( 1 , 3 )'],
+  ['<math><mrow><mo>{</mo><mn>1</mn><mo>,</mo><mn>3</mn><mo>}</mo></mrow></math>', '{ 1 , 3 }']
 ];
 
 testCases.forEach(function(testCase) {
