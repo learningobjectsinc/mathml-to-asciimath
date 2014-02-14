@@ -37,7 +37,11 @@ var testCases = [
   ['<math><mi>a</mi><mo>&gt;</mo><mn>2</mn></math>', 'a > 2'],
   ['<math><mi>a</mi><mo>≤</mo><mi>b</mi></math>', 'a <= b'],
   ['<math><mi>a</mi><mo>≥</mo><mi>b</mi></math>', 'a >= b'],
-  ['<math><mi>a</mi><mo>≈</mo><mn>2</mn></math>', 'a ~~ 2']
+  ['<math><mi>a</mi><mo>≈</mo><mn>2</mn></math>', 'a ~~ 2'],
+  ['<math><mrow><mo>[</mo><mn>1</mn><mo>,</mo><mn>3</mn><mo>]</mo></mrow></math>', '[ 1 , 3 ]'],
+  ['<math><mrow><mo>[</mo><mn>1</mn><mo>,</mo><mn>3</mn><mo>)</mo></mrow></math>', '[ 1 , 3 )'],
+  ['<math><mrow><mo>(</mo><mn>1</mn><mo>,</mo><mn>3</mn><mo>]</mo></mrow></math>', '( 1 , 3 ]'],
+  ['<math><mrow><mo>(</mo><mn>1</mn><mo>,</mo><mn>3</mn><mo>)</mo></mrow></math>', '( 1 , 3 )']
 ];
 
 testCases.forEach(function(testCase) {
