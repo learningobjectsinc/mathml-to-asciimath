@@ -66,6 +66,13 @@ function handleSquareRoot(element, buffer) {
   handleAll(element.children, buffer);
 }
 
+function handleOver(element, buffer) {
+  var base = element.children[0];
+  var overscript = element.children[1];
+
+  handleAll(element.children.slice().reverse(), buffer);
+}
+
 function handleMath(element, buffer) {
   handleAll(element.children, buffer);
 }
@@ -91,7 +98,8 @@ var handlers = {
   msup: handleSuperScript,
   msub: handleSubScript,
   mrow: handleRow,
-  msqrt: handleSquareRoot
+  msqrt: handleSquareRoot,
+  mover: handleOver
 };
 
 function toAsciiMath(mathml) {
