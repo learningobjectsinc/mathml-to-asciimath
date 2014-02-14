@@ -28,7 +28,13 @@ var testCases = [
   ['<math><mrow><mo>(</mo><mn>0.37</mn><mo>)</mo></mrow><mrow><mo>(</mo><mn>120</mn><mo>)</mo></mrow><mo>=</mo><mn>44.4</mn></math>', '( 0.37 ) ( 120 ) = 44.4'],
   ['<math><msqrt><mi>x</mi></msqrt></math>', 'sqrt x'],
   ['<math><msqrt><mrow><mi>x</mi></mrow></msqrt></math>', 'sqrt ( x )'],
-  ['<math><msqrt><mrow><mi>x</mi><mo>+</mo><mn>2</mn></mrow></msqrt></math>', 'sqrt ( x + 2 )']
+  ['<math><msqrt><mrow><mi>x</mi><mo>+</mo><mn>2</mn></mrow></msqrt></math>', 'sqrt ( x + 2 )'],
+  ['<math><mi>a</mi><mo>=</mo><mn>2</mn></math>', 'a = 2'],
+  ['<math><mi>a</mi><mo>≠</mo><mn>2</mn></math>', 'a != 2'],
+  ['<math><mi>a</mi><mo>&lt;</mo><mn>2</mn></math>', 'a < 2'],
+  ['<math><mi>a</mi><mo>&gt;</mo><mn>2</mn></math>', 'a > 2'],
+  ['<math><mi>a</mi><mo>≤</mo><mi>b</mi></math>', 'a <= b'],
+  ['<math><mi>a</mi><mo>≥</mo><mi>b</mi></math>', 'a >= b']
 ];
 
 testCases.forEach(function(testCase) {
