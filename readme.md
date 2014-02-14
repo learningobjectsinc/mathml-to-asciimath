@@ -1,6 +1,6 @@
 # mathml-to-asciimath
 
-Converts some subset of MathML into AsciiMath.
+Naively convert subset of MathML to AsciiMath.
 
 ## Usage
 
