@@ -18,27 +18,27 @@ function handleFraction(element, buffer) {
   var firstChild = element.children[0];
   var secondChild = element.children[1];
 
-  translate(firstChild, buffer);
+  handle(firstChild, buffer);
   buffer.push('/');
-  translate(secondChild, buffer);
+  handle(secondChild, buffer);
 }
 
 function handleSuperScript(element, buffer) {
   var firstChild = element.children[0];
   var secondChild = element.children[1];
 
-  translate(firstChild, buffer);
+  handle(firstChild, buffer);
   buffer.push('^');
-  translate(secondChild, buffer);
+  handle(secondChild, buffer);
 }
 
 function handleSubScript(element, buffer) {
   var firstChild = element.children[0];
   var secondChild = element.children[1];
 
-  translate(firstChild, buffer);
+  handle(firstChild, buffer);
   buffer.push('_');
-  translate(secondChild, buffer);
+  handle(secondChild, buffer);
 }
 
 function handleRow(element, buffer) {
@@ -79,11 +79,11 @@ function handleMath(element, buffer) {
 
 function handleAll(elements, buffer) {
   elements.forEach(function(element) {
-    translate(element, buffer)
+    handle(element, buffer)
   });
 }
 
-function translate(element, buffer) {
+function handle(element, buffer) {
   var handler = handlers[element.name];
   handler(element, buffer);
 }
@@ -106,7 +106,7 @@ function toAsciiMath(mathml) {
   var doc = new xmldoc.XmlDocument(mathml);
 
   var buffer = [];
-  translate(doc, buffer);
+  handle(doc, buffer);
   return buffer.join(' ');
 }
 
