@@ -46,13 +46,18 @@ var testCases = [
   ['<math><mn>3.3</mn><mover><mn>3</mn><mo>&macr;</mo></mover></math>', '3.3 bar 3'],
   ['<math><mover><mrow><mi>a</mi><mi>b</mi></mrow><mo>&macr;</mo></mover></math>', 'bar ( a b )'],
   ['<math><mover><mrow><mi>a</mi><mi>b</mi></mrow><mo>&rarr;</mo></mover></math>', 'vec ( a b )'],
-  ['<math><mn>2</mn><mo>&plusmn;</mo><mn>3</mn></math>', '2 +- 3']
+  ['<math><mn>2</mn><mo>&plusmn;</mo><mn>3</mn></math>', '2 +- 3'],
+  ['<math><mstyle><mn>1</mn><mo>+</mo><mn>2</mn></mstyle></math>', '1 + 2', 'has <mstyle>'],
+  ['<?xml version="1.0"?><math><mn>1</mn><mo>+</mo><mn>2</mn></math>', '1 + 2', 'has xml declaration']
 ];
 
 testCases.forEach(function(testCase) {
   var expected = testCase[1];
+  var note = testCase[2] || '';
 
-  exports[expected] = function(test) {
+  if (note) note = ' (' + note + ')'
+
+  exports[expected + note] = function(test) {
     var input = testCase[0];
     var output = toAsciiMath(input);
 

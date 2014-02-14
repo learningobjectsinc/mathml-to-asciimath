@@ -73,6 +73,10 @@ function handleOver(element, buffer) {
   handleAll(element.children.slice().reverse(), buffer);
 }
 
+function handleStyle(element, buffer) {
+  handleAll(element.children, buffer);
+}
+
 function handleMath(element, buffer) {
   handleAll(element.children, buffer);
 }
@@ -99,7 +103,8 @@ var handlers = {
   msub: handleSubScript,
   mrow: handleRow,
   msqrt: handleSquareRoot,
-  mover: handleOver
+  mover: handleOver,
+  mstyle: handleStyle
 };
 
 function toAsciiMath(mathml) {
