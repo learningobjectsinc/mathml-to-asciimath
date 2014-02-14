@@ -1,5 +1,5 @@
 var xmldoc = require('xmldoc');
-var moMap = require('./lib/moSymbolMap');
+var mo = require('./lib/mo');
 
 function handleIdentifier(element, buffer) {
   buffer.push(element.val);
@@ -10,7 +10,7 @@ function handleNumber(element, buffer) {
 }
 
 function handleOperator(element, buffer) {
-  var asciiMath = moMap[element.val];
+  var asciiMath = mo[element.val];
   buffer.push(asciiMath);
 }
 
