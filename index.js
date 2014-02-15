@@ -19,19 +19,23 @@ var handlerApi = {
 };
 
 // element name -> function(element, buffer)
-var handlers = {
-  math: require('./lib/handlers/math')(handlerApi),
-  mi: require('./lib/handlers/mi')(handlerApi),
-  mo: require('./lib/handlers/mo')(handlerApi),
-  mn: require('./lib/handlers/mn')(handlerApi),
-  mfrac: require('./lib/handlers/mfrac')(handlerApi),
-  msup: require('./lib/handlers/msup')(handlerApi),
-  msub: require('./lib/handlers/msub')(handlerApi),
-  mrow: require('./lib/handlers/mrow')(handlerApi),
-  msqrt: require('./lib/handlers/msqrt')(handlerApi),
-  mover: require('./lib/handlers/mover')(handlerApi),
-  mstyle: require('./lib/handlers/mstyle')(handlerApi)
-};
+var handlers = {};
+
+[
+  'math',
+  'mi',
+  'mo',
+  'mn',
+  'mfrac',
+  'msup',
+  'msub',
+  'mrow',
+  'msqrt',
+  'mover',
+  'mstyle'
+].forEach(function registerHandler(elementName) {
+  handlers[elementName] = require('./lib/handlers/' + elementName)(handlerApi);
+});
 
 function toAsciiMath(mathml) {
   var doc = new xmldoc.XmlDocument(mathml);
