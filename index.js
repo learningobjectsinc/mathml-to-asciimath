@@ -1,33 +1,6 @@
 var xmldoc = require('xmldoc');
 var mo = require('./lib/mo');
 
-function handleIdentifier(element, buffer) {
-  buffer.push(element.val);
-}
-
-function handleNumber(element, buffer) {
-  buffer.push(element.val);
-}
-
-function handleOperator(element, buffer) {
-  var asciiMathSymbol = mo.toAsciiMath(element.val);
-
-  if (typeof asciiMathSymbol == 'undefined') {
-    throw new Error('Unsupported operator: ' + element.val)
-  }
-
-  buffer.push(asciiMathSymbol);
-}
-
-function handleFraction(element, buffer) {
-  var firstChild = element.children[0];
-  var secondChild = element.children[1];
-
-  handle(firstChild, buffer);
-  buffer.push('/');
-  handle(secondChild, buffer);
-}
-
 function handleSuperScript(element, buffer) {
   var firstChild = element.children[0];
   var secondChild = element.children[1];
@@ -82,10 +55,6 @@ function handleStyle(element, buffer) {
   handleAll(element.children, buffer);
 }
 
-function handleMath(element, buffer) {
-  handleAll(element.children, buffer);
-}
-
 function handleAll(elements, buffer) {
   elements.forEach(function(element) {
     handle(element, buffer)
@@ -99,13 +68,18 @@ function handle(element, buffer) {
   handler(element, buffer);
 }
 
+var handlerApi = {
+  handle: handle,
+  handleAll: handleAll
+};
+
 // element name -> handler function
 var handlers = {
-  math: handleMath,
-  mi: handleIdentifier,
-  mo: handleOperator,
-  mn: handleNumber,
-  mfrac: handleFraction,
+  math: require('./lib/handlers/math')(handlerApi),
+  mi: require('./lib/handlers/mi')(handlerApi),
+  mo: require('./lib/handlers/mo')(handlerApi),
+  mn: require('./lib/handlers/mn')(handlerApi),
+  mfrac: require('./lib/handlers/mfrac')(handlerApi),
   msup: handleSuperScript,
   msub: handleSubScript,
   mrow: handleRow,
