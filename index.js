@@ -1,60 +1,6 @@
 var xmldoc = require('xmldoc');
 var mo = require('./lib/mo');
 
-function handleSuperScript(element, buffer) {
-  var firstChild = element.children[0];
-  var secondChild = element.children[1];
-
-  handle(firstChild, buffer);
-  buffer.push('^');
-  handle(secondChild, buffer);
-}
-
-function handleSubScript(element, buffer) {
-  var firstChild = element.children[0];
-  var secondChild = element.children[1];
-
-  handle(firstChild, buffer);
-  buffer.push('_');
-  handle(secondChild, buffer);
-}
-
-function handleRow(element, buffer) {
-  var firstChild = element.children[0];
-  var lastChild = element.children.slice(-1)[0];
-  var hasGrouping =
-    firstChild.name == 'mo' &&
-    mo.isOpenOperator(firstChild.val) &&
-    lastChild.name == 'mo' &&
-    mo.isCloseOperator(lastChild.val);
-
-  if (!hasGrouping) {
-    buffer.push('(');
-  }
-
-  handleAll(element.children, buffer);
-
-  if (!hasGrouping) {
-    buffer.push(')');
-  }
-}
-
-function handleSquareRoot(element, buffer) {
-  buffer.push('sqrt');
-  handleAll(element.children, buffer);
-}
-
-function handleOver(element, buffer) {
-  var base = element.children[0];
-  var overscript = element.children[1];
-
-  handleAll(element.children.slice().reverse(), buffer);
-}
-
-function handleStyle(element, buffer) {
-  handleAll(element.children, buffer);
-}
-
 function handleAll(elements, buffer) {
   elements.forEach(function(element) {
     handle(element, buffer)
@@ -80,12 +26,12 @@ var handlers = {
   mo: require('./lib/handlers/mo')(handlerApi),
   mn: require('./lib/handlers/mn')(handlerApi),
   mfrac: require('./lib/handlers/mfrac')(handlerApi),
-  msup: handleSuperScript,
-  msub: handleSubScript,
-  mrow: handleRow,
-  msqrt: handleSquareRoot,
-  mover: handleOver,
-  mstyle: handleStyle
+  msup: require('./lib/handlers/msup')(handlerApi),
+  msub: require('./lib/handlers/msub')(handlerApi),
+  mrow: require('./lib/handlers/mrow')(handlerApi),
+  msqrt: require('./lib/handlers/msqrt')(handlerApi),
+  mover: require('./lib/handlers/mover')(handlerApi),
+  mstyle: require('./lib/handlers/mstyle')(handlerApi)
 };
 
 function toAsciiMath(mathml) {
