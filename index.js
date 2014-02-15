@@ -1,5 +1,4 @@
 var xmldoc = require('xmldoc');
-var mo = require('./lib/mo');
 
 function handleAll(elements, buffer) {
   elements.forEach(function(element) {
@@ -19,7 +18,7 @@ var handlerApi = {
   handleAll: handleAll
 };
 
-// element name -> handler function
+// element name -> function(element, buffer)
 var handlers = {
   math: require('./lib/handlers/math')(handlerApi),
   mi: require('./lib/handlers/mi')(handlerApi),
