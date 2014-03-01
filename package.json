@@ -16,6 +16,7 @@
     "nodeunit": "~0.8.4"
   },
   "dependencies": {
-    "xmldoc": "~0.1.2"
+    "xmldoc": "~0.1.2",
+    "trim": "0.0.1"
   }
 }
