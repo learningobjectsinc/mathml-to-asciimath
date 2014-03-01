@@ -1,6 +1,6 @@
 {
   "name": "mathml-to-asciimath",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Naively convert subset of MathML to AsciiMath",
   "main": "index.js",
   "scripts": {
