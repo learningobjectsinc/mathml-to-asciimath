@@ -108,24 +108,39 @@ module.exports = function init(handlerApi) {
 },{}],8:[function(_dereq_,module,exports){
 var moHelpers = _dereq_('../mo-helpers');
 
+function needsGrouping(element) {
+    var firstChild = element.children[0];
+    var lastChild = element.children.slice(-1)[0];
+
+    // already has grouping operators
+    if (firstChild.name == 'mo' &&
+        moHelpers.isOpenOperator(firstChild.val) &&
+        lastChild.name == 'mo' &&
+        moHelpers.isCloseOperator(lastChild.val)) {
+
+      return false;
+    }
+
+    // just mtext by itself -- ASCIIMathML does this when given text(foo)
+    if (element.children.length == 1 && firstChild.name == 'mtext') {
+      return false;
+    }
+
+    return true;
+}
+
 module.exports = function init(handlerApi) {
 
   return function handle(element, buffer) {
-    var firstChild = element.children[0];
-    var lastChild = element.children.slice(-1)[0];
-    var hasGrouping =
-      firstChild.name == 'mo' &&
-      moHelpers.isOpenOperator(firstChild.val) &&
-      lastChild.name == 'mo' &&
-      moHelpers.isCloseOperator(lastChild.val);
+    var addParens = needsGrouping(element);
 
-    if (!hasGrouping) {
+    if (addParens) {
       buffer.push('(');
     }
 
     handlerApi.handleAll(element.children, buffer);
 
-    if (!hasGrouping) {
+    if (addParens) {
       buffer.push(')');
     }
   };
