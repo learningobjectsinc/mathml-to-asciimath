@@ -21,7 +21,7 @@ var handlerApi = {
 
 // element name -> function(element, buffer)
 var handlers = {
-  // browserify needs static strings passed to require
+  // always pass string literals to require for browserify
   math:   _dereq_('./lib/handlers/math')(handlerApi),
   mi:     _dereq_('./lib/handlers/mi')(handlerApi),
   mo:     _dereq_('./lib/handlers/mo')(handlerApi),
@@ -32,7 +32,8 @@ var handlers = {
   mrow:   _dereq_('./lib/handlers/mrow')(handlerApi),
   msqrt:  _dereq_('./lib/handlers/msqrt')(handlerApi),
   mover:  _dereq_('./lib/handlers/mover')(handlerApi),
-  mstyle: _dereq_('./lib/handlers/mstyle')(handlerApi)
+  mstyle: _dereq_('./lib/handlers/mstyle')(handlerApi),
+  mtext:  _dereq_('./lib/handlers/mtext')(handlerApi)
 };
 
 function toAsciiMath(mathml) {
@@ -44,7 +45,7 @@ function toAsciiMath(mathml) {
 }
 
 module.exports = toAsciiMath;
-},{"./lib/handlers/math":2,"./lib/handlers/mfrac":3,"./lib/handlers/mi":4,"./lib/handlers/mn":5,"./lib/handlers/mo":6,"./lib/handlers/mover":7,"./lib/handlers/mrow":8,"./lib/handlers/msqrt":9,"./lib/handlers/mstyle":10,"./lib/handlers/msub":11,"./lib/handlers/msup":12,"xmldoc":15}],2:[function(_dereq_,module,exports){
+},{"./lib/handlers/math":2,"./lib/handlers/mfrac":3,"./lib/handlers/mi":4,"./lib/handlers/mn":5,"./lib/handlers/mo":6,"./lib/handlers/mover":7,"./lib/handlers/mrow":8,"./lib/handlers/msqrt":9,"./lib/handlers/mstyle":10,"./lib/handlers/msub":11,"./lib/handlers/msup":12,"./lib/handlers/mtext":13,"xmldoc":16}],2:[function(_dereq_,module,exports){
 module.exports = function init(handlerApi) {
 
   return function handle(element, buffer) {
@@ -74,9 +75,9 @@ module.exports = function init() {
   };
 };
 
-},{"trim":14}],5:[function(_dereq_,module,exports){
+},{"trim":15}],5:[function(_dereq_,module,exports){
 module.exports=_dereq_(4)
-},{"trim":14}],6:[function(_dereq_,module,exports){
+},{"trim":15}],6:[function(_dereq_,module,exports){
 var moHelpers = _dereq_('../mo-helpers');
 var trim = _dereq_('trim');
 
@@ -93,7 +94,7 @@ module.exports = function init() {
   };
 };
 
-},{"../mo-helpers":13,"trim":14}],7:[function(_dereq_,module,exports){
+},{"../mo-helpers":14,"trim":15}],7:[function(_dereq_,module,exports){
 module.exports = function init(handlerApi) {
 
   return function handle(element, buffer) {
@@ -130,7 +131,7 @@ module.exports = function init(handlerApi) {
   };
 };
 
-},{"../mo-helpers":13}],9:[function(_dereq_,module,exports){
+},{"../mo-helpers":14}],9:[function(_dereq_,module,exports){
 module.exports = function init(handlerApi) {
 
   return function handle(element, buffer) {
@@ -168,6 +169,16 @@ module.exports = function init(handlerApi) {
 };
 
 },{}],13:[function(_dereq_,module,exports){
+var trim = _dereq_('trim');
+
+module.exports = function init() {
+  return function handle(element, buffer) {
+    var value = trim(element.val);
+    buffer.push('text(' + value + ')');
+  };
+};
+
+},{"trim":15}],14:[function(_dereq_,module,exports){
 // value in <mo> -> AsciiMath symbol
 var moToAsciiMath = {
   '+': '+',
@@ -208,7 +219,7 @@ exports.isCloseOperator = function isCloseOperator(operator) {
   return [')', ']', '}'].indexOf(operator) != -1;
 };
 
-},{}],14:[function(_dereq_,module,exports){
+},{}],15:[function(_dereq_,module,exports){
 
 exports = module.exports = trim;
 
@@ -224,12 +235,12 @@ exports.right = function(str){
   return str.replace(/\s*$/, '');
 };
 
-},{}],15:[function(_dereq_,module,exports){
+},{}],16:[function(_dereq_,module,exports){
 // This file is just added for convenience so this repository can be
 // directly checked out into a project's deps folder
 module.exports = _dereq_('./lib/xmldoc');
 
-},{"./lib/xmldoc":16}],16:[function(_dereq_,module,exports){
+},{"./lib/xmldoc":17}],17:[function(_dereq_,module,exports){
 (function () {
 
 // global on the server, window in the browser
@@ -440,7 +451,7 @@ function extend(destination, source) {
 root.XmlDocument = XmlDocument;
 
 })()
-},{"sax":17}],17:[function(_dereq_,module,exports){
+},{"sax":18}],18:[function(_dereq_,module,exports){
 // wrapper for non-node envs
 ;(function (sax) {
 
@@ -1458,7 +1469,7 @@ function write (chunk) {
 
 })(typeof exports === "undefined" ? sax = {} : exports)
 
-},{"stream":25}],18:[function(_dereq_,module,exports){
+},{"stream":26}],19:[function(_dereq_,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -1760,7 +1771,7 @@ function isUndefined(arg) {
   return arg === void 0;
 }
 
-},{}],19:[function(_dereq_,module,exports){
+},{}],20:[function(_dereq_,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -1785,7 +1796,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],20:[function(_dereq_,module,exports){
+},{}],21:[function(_dereq_,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -1840,7 +1851,7 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 
-},{}],21:[function(_dereq_,module,exports){
+},{}],22:[function(_dereq_,module,exports){
 var base64 = _dereq_('base64-js')
 var ieee754 = _dereq_('ieee754')
 
@@ -2898,7 +2909,7 @@ function assert (test, message) {
   if (!test) throw new Error(message || 'Failed assertion')
 }
 
-},{"base64-js":22,"ieee754":23}],22:[function(_dereq_,module,exports){
+},{"base64-js":23,"ieee754":24}],23:[function(_dereq_,module,exports){
 var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 
 ;(function (exports) {
@@ -3021,7 +3032,7 @@ var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 	module.exports.fromByteArray = uint8ToBase64
 }())
 
-},{}],23:[function(_dereq_,module,exports){
+},{}],24:[function(_dereq_,module,exports){
 exports.read = function(buffer, offset, isLE, mLen, nBytes) {
   var e, m,
       eLen = nBytes * 8 - mLen - 1,
@@ -3107,7 +3118,7 @@ exports.write = function(buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128;
 };
 
-},{}],24:[function(_dereq_,module,exports){
+},{}],25:[function(_dereq_,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -3181,7 +3192,7 @@ function onend() {
   });
 }
 
-},{"./readable.js":28,"./writable.js":30,"inherits":19,"process/browser.js":26}],25:[function(_dereq_,module,exports){
+},{"./readable.js":29,"./writable.js":31,"inherits":20,"process/browser.js":27}],26:[function(_dereq_,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -3310,9 +3321,9 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"./duplex.js":24,"./passthrough.js":27,"./readable.js":28,"./transform.js":29,"./writable.js":30,"events":18,"inherits":19}],26:[function(_dereq_,module,exports){
-module.exports=_dereq_(20)
-},{}],27:[function(_dereq_,module,exports){
+},{"./duplex.js":25,"./passthrough.js":28,"./readable.js":29,"./transform.js":30,"./writable.js":31,"events":19,"inherits":20}],27:[function(_dereq_,module,exports){
+module.exports=_dereq_(21)
+},{}],28:[function(_dereq_,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -3355,7 +3366,7 @@ PassThrough.prototype._transform = function(chunk, encoding, cb) {
   cb(null, chunk);
 };
 
-},{"./transform.js":29,"inherits":19}],28:[function(_dereq_,module,exports){
+},{"./transform.js":30,"inherits":20}],29:[function(_dereq_,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -4292,7 +4303,7 @@ function indexOf (xs, x) {
 }
 
 }).call(this,_dereq_("/usr/local/lib/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./index.js":25,"/usr/local/lib/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":20,"buffer":21,"events":18,"inherits":19,"process/browser.js":26,"string_decoder":31}],29:[function(_dereq_,module,exports){
+},{"./index.js":26,"/usr/local/lib/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":21,"buffer":22,"events":19,"inherits":20,"process/browser.js":27,"string_decoder":32}],30:[function(_dereq_,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -4498,7 +4509,7 @@ function done(stream, er) {
   return stream.push(null);
 }
 
-},{"./duplex.js":24,"inherits":19}],30:[function(_dereq_,module,exports){
+},{"./duplex.js":25,"inherits":20}],31:[function(_dereq_,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -4886,7 +4897,7 @@ function endWritable(stream, state, cb) {
   state.ended = true;
 }
 
-},{"./index.js":25,"buffer":21,"inherits":19,"process/browser.js":26}],31:[function(_dereq_,module,exports){
+},{"./index.js":26,"buffer":22,"inherits":20,"process/browser.js":27}],32:[function(_dereq_,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -5079,6 +5090,6 @@ function base64DetectIncompleteChar(buffer) {
   return incomplete;
 }
 
-},{"buffer":21}]},{},[1])
+},{"buffer":22}]},{},[1])
 (1)
 });
