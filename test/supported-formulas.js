@@ -55,7 +55,9 @@ var testCases = [
   ['<math><mn>  \t\n\r  1  \n\r\t   </mn><mo>+</mo><mi>b</mi></math>', '1 + b', 'whitespace inside <mn>'],
   ['<math><mn>1</mn><mo>   \n\r\t   +   \n\r\t   </mo><mi>b</mi></math>', '1 + b', 'whitespace inside <mo>'],
   ['<math><mn>1</mn><mo>+</mo><mi>  \n\r\t   b   \n\r\t  </mi></math>', '1 + b', 'whitespace inside <mi>'],
-  ['<math><mn>1</mn><mo>+</mo><mtext>  \n\r\t   dog   \n\r\t  </mtext></math>', '1 + text(dog)', 'whitespace inside <mtext>']
+  ['<math><mn>1</mn><mo>+</mo><mtext>  \n\r\t   dog   \n\r\t  </mtext></math>', '1 + text(dog)', 'whitespace inside <mtext>'],
+  ['<math><mrow><mtext>__</mtext></mrow><mo>+</mo><mn>4</mn></math>', 'text(__) + 4'],
+  ['<math><mrow><mo>(</mo><mrow><mtext>__</mtext></mrow><mo>+</mo><mn>3</mn><mo>)</mo></mrow><mo>+</mo><mn>3</mn></math>', '( text(__) + 3 ) + 3']
 ];
 
 testCases.forEach(function(testCase) {
