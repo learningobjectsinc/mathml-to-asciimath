@@ -4,7 +4,7 @@
   "description": "Naively convert subset of MathML to AsciiMath",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/nodeunit/bin/nodeunit test"
+    "test": "./node_modules/.bin/nodeunit test"
   },
   "keywords": [
     "mathml",
