@@ -47,11 +47,15 @@ var testCases = [
   ['<math><mover><mrow><mi>a</mi><mi>b</mi></mrow><mo>&macr;</mo></mover></math>', 'bar ( a b )'],
   ['<math><mover><mrow><mi>a</mi><mi>b</mi></mrow><mo>&rarr;</mo></mover></math>', 'vec ( a b )'],
   ['<math><mn>2</mn><mo>&plusmn;</mo><mn>3</mn></math>', '2 +- 3'],
+  ['<math><mn>2</mn><mo>+</mo><mtext>dog</mtext></math>', '2 + text(dog)'],
+  ['<math><mn>2</mn><mo>+</mo><mtext>?</mtext></math>', '2 + text(?)'],
+  ['<math><mn>2</mn><mo>+</mo><mtext>__</mtext></math>', '2 + text(__)'],
   ['<math><mstyle><mn>1</mn><mo>+</mo><mn>2</mn></mstyle></math>', '1 + 2', 'has <mstyle>'],
   ['<?xml version="1.0"?><math><mn>1</mn><mo>+</mo><mn>2</mn></math>', '1 + 2', 'has xml declaration'],
   ['<math><mn>  \t\n\r  1  \n\r\t   </mn><mo>+</mo><mi>b</mi></math>', '1 + b', 'whitespace inside <mn>'],
   ['<math><mn>1</mn><mo>   \n\r\t   +   \n\r\t   </mo><mi>b</mi></math>', '1 + b', 'whitespace inside <mo>'],
-  ['<math><mn>1</mn><mo>+</mo><mi>  \n\r\t   b   \n\r\t  </mi></math>', '1 + b', 'whitespace inside <mi>']
+  ['<math><mn>1</mn><mo>+</mo><mi>  \n\r\t   b   \n\r\t  </mi></math>', '1 + b', 'whitespace inside <mi>'],
+  ['<math><mn>1</mn><mo>+</mo><mtext>  \n\r\t   dog   \n\r\t  </mtext></math>', '1 + text(dog)', 'whitespace inside <mtext>']
 ];
 
 testCases.forEach(function(testCase) {

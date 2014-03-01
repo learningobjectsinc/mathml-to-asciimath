@@ -20,7 +20,7 @@ var handlerApi = {
 
 // element name -> function(element, buffer)
 var handlers = {
-  // browserify needs static strings passed to require
+  // always pass string literals to require for browserify
   math:   require('./lib/handlers/math')(handlerApi),
   mi:     require('./lib/handlers/mi')(handlerApi),
   mo:     require('./lib/handlers/mo')(handlerApi),
@@ -31,7 +31,8 @@ var handlers = {
   mrow:   require('./lib/handlers/mrow')(handlerApi),
   msqrt:  require('./lib/handlers/msqrt')(handlerApi),
   mover:  require('./lib/handlers/mover')(handlerApi),
-  mstyle: require('./lib/handlers/mstyle')(handlerApi)
+  mstyle: require('./lib/handlers/mstyle')(handlerApi),
+  mtext:  require('./lib/handlers/mtext')(handlerApi)
 };
 
 function toAsciiMath(mathml) {
