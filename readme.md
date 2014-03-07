@@ -1,6 +1,6 @@
 # mathml-to-asciimath
 
-Naively convert subset of MathML to AsciiMath.
+Convert subset of MathML to ASCIIMathML.
 
 ## Usage
 
@@ -16,3 +16,6 @@ convert(mathml); // => '1 + 2'
 - comprehensive
 - performant
 
+## License
+
+MIT
