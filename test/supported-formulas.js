@@ -49,6 +49,7 @@ var testCases = [
   ['<math><mn>2</mn><mo>&plusmn;</mo><mn>3</mn></math>', '2 +- 3'],
   ['<math><mn>2</mn><mo>+</mo><mtext>dog</mtext></math>', '2 + text(dog)'],
   ['<math><mn>2</mn><mo>+</mo><mtext>?</mtext></math>', '2 + text(?)'],
+  ['<math><mn>2</mn><mo>+</mo><mo>?</mo></math>', '2 + ?'],
   ['<math><mn>2</mn><mo>+</mo><mtext>__</mtext></math>', '2 + text(__)'],
   ['<math><mstyle><mn>1</mn><mo>+</mo><mn>2</mn></mstyle></math>', '1 + 2', 'has <mstyle>'],
   ['<?xml version="1.0"?><math><mn>1</mn><mo>+</mo><mn>2</mn></math>', '1 + 2', 'has xml declaration'],
