@@ -54,6 +54,7 @@ var testCases = [
   ['<math><mn>2</mn><mo>+</mo><mtext>__</mtext></math>', '2 + text(__)'],
   ['<math><mo>&ang;</mo></math>', '/_'],
   ['<math><mo>&ang;</mo><mi>A</mi><mi>B</mi><mi>C</mi></math>', '/_ A B C'],
+  ['<math><mn>4</mn><mo>&deg;</mo></math>', '4 deg'],
 
   ['<math><mstyle><mn>1</mn><mo>+</mo><mn>2</mn></mstyle></math>', '1 + 2', 'has <mstyle>'],
   ['<?xml version="1.0"?><math><mn>1</mn><mo>+</mo><mn>2</mn></math>', '1 + 2', 'has xml declaration'],
