@@ -51,6 +51,9 @@ var testCases = [
   ['<math><mn>2</mn><mo>+</mo><mtext>?</mtext></math>', '2 + text(?)'],
   ['<math><mn>2</mn><mo>+</mo><mo>?</mo></math>', '2 + ?'],
   ['<math><mn>2</mn><mo>+</mo><mtext>__</mtext></math>', '2 + text(__)'],
+  ['<math><mo>&ang;</mo></math>', '/_'],
+  ['<math><mo>&ang;</mo><mi>A</mi><mi>B</mi><mi>C</mi></math>', '/_ A B C'],
+
   ['<math><mstyle><mn>1</mn><mo>+</mo><mn>2</mn></mstyle></math>', '1 + 2', 'has <mstyle>'],
   ['<?xml version="1.0"?><math><mn>1</mn><mo>+</mo><mn>2</mn></math>', '1 + 2', 'has xml declaration'],
   ['<math><mn>  \t\n\r  1  \n\r\t   </mn><mo>+</mo><mi>b</mi></math>', '1 + b', 'whitespace inside <mn>'],
