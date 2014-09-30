@@ -63,7 +63,43 @@ var testCases = [
   ['<math><mn>1</mn><mo>+</mo><mi>  \n\r\t   b   \n\r\t  </mi></math>', '1 + b', 'whitespace inside <mi>'],
   ['<math><mn>1</mn><mo>+</mo><mtext>  \n\r\t   dog   \n\r\t  </mtext></math>', '1 + text(dog)', 'whitespace inside <mtext>'],
   ['<math><mrow><mtext>__</mtext></mrow><mo>+</mo><mn>4</mn></math>', 'text(__) + 4'],
-  ['<math><mrow><mo>(</mo><mrow><mtext>__</mtext></mrow><mo>+</mo><mn>3</mn><mo>)</mo></mrow><mo>+</mo><mn>3</mn></math>', '( text(__) + 3 ) + 3']
+  ['<math><mrow><mo>(</mo><mrow><mtext>__</mtext></mrow><mo>+</mo><mn>3</mn><mo>)</mo></mrow><mo>+</mo><mn>3</mn></math>', '( text(__) + 3 ) + 3'],
+
+  // greek symbols - identifiers
+  ['<math><mi>&alpha;</mi></math>', 'alpha'],
+  ['<math><mi>&beta;</mi></math>', 'beta'],
+  ['<math><mi>&chi;</mi></math>', 'chi'],
+  ['<math><mi>&delta;</mi></math>', 'delta'],
+  ['<math><mi>&epsilon;</mi></math>', 'epsi'],
+  ['<math><mi>&eta;</mi></math>', 'eta'],
+  ['<math><mi>&gamma;</mi></math>', 'gamma'],
+  ['<math><mi>&iota;</mi></math>', 'iota'],
+  ['<math><mi>&kappa;</mi></math>', 'kappa'],
+  ['<math><mi>&lambda;</mi></math>', 'lambda'],
+  ['<math><mi>&mu;</mi></math>', 'mu'],
+  ['<math><mi>&nu;</mi></math>', 'nu'],
+  ['<math><mi>&omega;</mi></math>', 'omega'],
+  ['<math><mi>&phi;</mi></math>', 'phi'],
+  ['<math><mi>&pi;</mi></math>', 'pi'],
+  ['<math><mi>&psi;</mi></math>', 'psi'],
+  ['<math><mi>&rho;</mi></math>', 'rho'],
+  ['<math><mi>&sigma;</mi></math>', 'sigma'],
+  ['<math><mi>&tau;</mi></math>', 'tau'],
+  ['<math><mi>&theta;</mi></math>', 'theta'],
+  ['<math><mi>&upsilon;</mi></math>', 'upsilon'],
+  ['<math><mi>&xi;</mi></math>', 'xi'],
+  ['<math><mi>&zeta;</mi></math>', 'zeta'],
+
+  // greek symbols - operators
+  ['<math><mo>&Delta;</mo></math>', 'Delta'],
+  ['<math><mo>&Gamma;</mo></math>', 'Gamma'],
+  ['<math><mo>&Lambda;</mo></math>', 'Lambda'],
+  ['<math><mo>&Omega;</mo></math>', 'Omega'],
+  ['<math><mo>&Phi;</mo></math>', 'Phi'],
+  ['<math><mo>&Pi;</mo></math>', 'Pi'],
+  ['<math><mo>&Sigma;</mo></math>', 'Sigma'],
+  ['<math><mo>&Theta;</mo></math>', 'Theta'],
+  ['<math><mo>&Xi;</mo></math>', 'Xi']
 ];
 
 testCases.forEach(function(testCase) {
