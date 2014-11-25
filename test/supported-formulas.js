@@ -47,6 +47,7 @@ var testCases = [
   ['<math><mover><mrow><mi>a</mi><mi>b</mi></mrow><mo>&macr;</mo></mover></math>', 'bar ( a b )'],
   ['<math><mover><mrow><mi>a</mi><mi>b</mi></mrow><mo>&rarr;</mo></mover></math>', 'vec ( a b )'],
   ['<math><mover><mrow><mi>a</mi><mi>b</mi></mrow><mo>&harr;</mo></mover></math>', 'line ( a b )'],
+  ['<math><mover><mrow><mi>a</mi><mi>b</mi></mrow><mo>&#8978;</mo></mover></math>', 'arc ( a b )'],
   ['<math><mn>2</mn><mo>&plusmn;</mo><mn>3</mn></math>', '2 +- 3'],
   ['<math><mn>2</mn><mo>+</mo><mtext>dog</mtext></math>', '2 + text(dog)'],
   ['<math><mn>2</mn><mo>+</mo><mtext>?</mtext></math>', '2 + text(?)'],
